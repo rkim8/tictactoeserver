@@ -54,8 +54,8 @@ public class TicTacToeServer
             }
         }
 
-        // Player X is suspended until Player O connects.
-        // Resume player X now.
+        // Player O is suspended until Player X connects.
+        // Resume player O now.
         synchronized ( players[ 0 ] )
         {
             players[0].threadWait = false;
