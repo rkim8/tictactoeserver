@@ -20,17 +20,15 @@ public class TicTacToeClient extends Thread
     private Thread m_thread;
     private char m_cMark;
     private boolean m_bMoveAllowed;
-    private InetAddress IP;
     private int m_nPort;
 
     public TicTacToeClient( )
     {
 
-        m_nPort = 5000;
+        m_nPort = 5050;
         try
         {
-            IP = InetAddress.getLocalHost();
-            m_connection = new Socket( IP, m_nPort );
+            m_connection = new Socket( "127.0.0.0", m_nPort );
             input = new DataInputStream( m_connection.getInputStream( ) );
             output = new DataOutputStream( m_connection.getOutputStream( ) );
         }
@@ -46,8 +44,10 @@ public class TicTacToeClient extends Thread
         
     }
 
-    public void playGame( )
+    public static void main( String args[] )
     {
-        myMark = 
+        TicTacToeClient game = new TicTacToeClient();
+        
     }
+
 }
