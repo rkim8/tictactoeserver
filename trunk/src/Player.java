@@ -38,7 +38,7 @@ public class Player extends Thread
             e.printStackTrace(  );
             System.exit( 1 );
         }
-    }
+    }                       
 
     public void playerMovement( int inLocation )
     {
@@ -55,7 +55,7 @@ public class Player extends Thread
     }
 
 
-    public void play( )
+    public void run( )
     {
         try
         {
@@ -75,21 +75,20 @@ public class Player extends Thread
         // Waiting for other player
 
             if( m_cMark == 'O' )
-                output.writeUTF( "Wait for another player to join the game" );
-            try
             {
-                synchronized ( this )
+                output.writeUTF( "Wait for another player to join the game" );
+                try
                 {
                     while ( threadWait )
                     {
                         wait();
                     }
                 }
-            }
 
-            catch( InterruptedException e )
-            {
-                e.printStackTrace(  );
+                catch( InterruptedException e )
+                {
+                    e.printStackTrace(  );
+                }
             }
 
             output.writeUTF( "Other player connected, your move" );
@@ -104,7 +103,7 @@ public class Player extends Thread
                 int markingLoc = input.readInt( );
                 if ( serverControl.validMove( markingLoc, m_nPlayer ) )
                 {
-                    output.writeUTF( "Location: " + markingLoc );
+                    output.writeUTF( "Valid Move" );
                 }
                 else
                     output.writeUTF( "Invalid move" );

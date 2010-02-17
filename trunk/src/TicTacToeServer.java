@@ -25,7 +25,7 @@ public class TicTacToeServer
         // set up ServerSocket
         try
         {
-            server = new ServerSocket( m_nPort, 2 );
+            server = new ServerSocket( m_nPort );
         }
 
         catch( IOException e )
@@ -33,6 +33,7 @@ public class TicTacToeServer
             e.printStackTrace();
             System.exit( 1 );
         }
+        System.out.println(  );
     }
 
 
