@@ -77,8 +77,12 @@ public class Client {
 	}
 
 	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
 		Client c = new Client();
-		c.connect("127.0.0.1");
+		if (args.length == 0) {
+			System.out.print("No host specified, connectiong to localhost");
+			c.connect("127.0.0.1");
+		}	
+		else c.connect(args[0]);		
 	}
-
 }
