@@ -77,7 +77,6 @@ public class Client {
 	}
 
 	public static void main(String[] args) {
-		Scanner scanner = new Scanner(System.in);
 		Client c = new Client();
 		if (args.length == 0) {
 			System.out.print("No host specified, connectiong to localhost");
