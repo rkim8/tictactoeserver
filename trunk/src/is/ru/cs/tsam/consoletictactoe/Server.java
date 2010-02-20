@@ -4,11 +4,16 @@ import java.io.IOException;
 import java.net.*;
 import java.util.ArrayList;
 
+/**
+ * A server for a console version of a TicTacToe game
+ * 
+ * @author Verkefnahópur í Tölvusamskiptum
+ *
+ */
 public class Server {
 
 	private ServerSocket mainSocket;
 	private ArrayList<Game> game;
-
 
 	public Server() {
 		game = new ArrayList<Game>();
@@ -19,6 +24,10 @@ public class Server {
 		}
 	}
 
+	/**
+	 * Starts the server and waits for connections from clients
+	 * and creates a new {@link Game} thread for every 2 players
+	 */
 	public void start() {
 		int nGame = 0;
 		while(true)

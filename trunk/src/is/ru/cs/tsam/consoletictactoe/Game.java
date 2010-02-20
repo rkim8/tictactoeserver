@@ -5,6 +5,11 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 
+/**
+ * A thread object the runs a game of TicTacToe with 2 clients
+ * 
+ * @author Verkefnahópur í Tölvusamskiptum
+ */
 public class Game extends Thread {
 
 	private DataInputStream[] input;
@@ -20,6 +25,11 @@ public class Game extends Thread {
 		game = new TicTacToe();
 	}
 
+	/**
+	 * Adds a new client to the thread
+	 * 
+	 * @param connection	The socket which is connected to the client
+	 */
 	public void addPlayer(Socket connection) {
 		int i;
 		if (player[0] == null)
