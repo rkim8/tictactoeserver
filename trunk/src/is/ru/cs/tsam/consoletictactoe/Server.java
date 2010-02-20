@@ -22,6 +22,7 @@ public class Server {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		System.out.println("Server started, waiting for connections");
 	}
 
 	/**
@@ -37,22 +38,23 @@ public class Server {
 			try
 			{
 				game.get(nGame).addPlayer(mainSocket.accept());
+				System.out.println("New player added");
 				game.get(nGame).addPlayer(mainSocket.accept());
+				System.out.println("New player added");
 			}
 			catch( IOException e )
 			{
 				e.printStackTrace(  );
 				System.exit( 1 );
-			}  
+			}
+			System.out.println("Starting game #" + game.size());
 			game.get(nGame).start();
 			nGame++;
 		}
-
 	}
 
 	public static void main(String[] args) {
 		Server s = new Server();
 		s.start();
 	}
-
 }
