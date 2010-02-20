@@ -1,5 +1,13 @@
 package is.ru.cs.tsam.consoletictactoe;
 
+/**
+ * A TicTacToe game which can be used to work in
+ * a console environment. Does not include a main method
+ * and needs a interface implementation.
+ * 
+ * @author Verkefnahópur í Tölvusamskiptum
+ *
+ */
 public class TicTacToe {
 	
 	private final static int SIZE = 3;
@@ -31,29 +39,11 @@ public class TicTacToe {
 		return false;
 	}
 
-	// TODO Delete if no needed
-	public boolean gameOver() {
-		for (int i = 0; i < SIZE; i++)
-			if(board[i][0].getOwnedBy() != -1
-					&& board[i][0].getOwnedBy() == board[i][1].getOwnedBy()
-					&& board[i][1].getOwnedBy() == board[i][2].getOwnedBy())
-				return true;
-		for (int i = 0; i < SIZE; i++)
-			if(board[0][i].getOwnedBy() != -1
-					&& board[0][i].getOwnedBy() == board[1][i].getOwnedBy()
-					&& board[1][i].getOwnedBy() == board[2][i].getOwnedBy())
-				return true;
-		if(board[0][0].getOwnedBy() != -1
-				&& board[0][0].getOwnedBy() == board[1][1].getOwnedBy()
-				&& board[1][1].getOwnedBy() == board[2][2].getOwnedBy())
-			return true;
-		if(board[0][2].getOwnedBy() != -1
-				&& board[0][2].getOwnedBy() == board[1][1].getOwnedBy()
-				&& board[1][1].getOwnedBy() == board[2][0].getOwnedBy())
-			return true;
-		return false;
-	}
-
+	/**
+	 * Goes through the board and finds out if either player has won the game
+	 * 
+	 * @return	The number of the winner (0 or 1) or -1 if neither has won.
+	 */
 	public int getWinner() {
 		for (int i = 0; i < SIZE; i++)
 			if(board[i][0].getOwnedBy() != -1
@@ -74,6 +64,7 @@ public class TicTacToe {
 				&& board[1][1].getOwnedBy() == board[2][0].getOwnedBy())
 			return board[0][2].getOwnedBy();
 		return -1;		
+		// TODO Find out if it's a stalemate
 	}
 	
  	public String toString() {

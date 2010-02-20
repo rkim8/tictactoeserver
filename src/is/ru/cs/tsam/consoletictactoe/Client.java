@@ -5,12 +5,22 @@ import java.net.*;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ * A client for a console version of a TicTacToe game
+ * 
+ * @author Verkefnahópur í Tölvusamskiptum
+ */
 public class Client {
 
 	private Socket connection;
 	private DataInputStream input;
 	private DataOutputStream output;
 
+	/**
+	 * Connects the client to a server and starts the communucation protocol.
+	 * 
+	 * @param address	The hostname or ip address of the server
+	 */
 	public void connect(String address){
 		try {
 			connection = new Socket(address, 55000);
@@ -25,12 +35,11 @@ public class Client {
 		}
 		System.out.println("Connection successful");
 
-
 		try {
 			int nPlayer = input.readInt();
 			if (nPlayer == 0)
 				System.out.println("You are player X, waiting for other player");
-			else System.out.println("You are player O");
+			else System.out.println("You are player O, please wait for your turn");
 
 
 			while(input.readBoolean()) {
