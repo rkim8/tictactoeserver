@@ -14,6 +14,7 @@ public class Server {
 
 	private ServerSocket mainSocket;
 	private ArrayList<Game> game;
+	private ViewerListener listener;
 
 	public Server() {
 		game = new ArrayList<Game>();
@@ -22,6 +23,8 @@ public class Server {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		listener = new ViewerListener(game);
+		listener.start();
 		System.out.println("Server started, waiting for connections");
 	}
 

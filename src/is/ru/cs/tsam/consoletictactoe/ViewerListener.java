@@ -17,7 +17,6 @@ public class ViewerListener extends Thread {
 		incoming = new byte[1];
 		try {
 			viewerSocket = new DatagramSocket(56000);
-			viewerSocket.setSoTimeout(10000);
 		} catch (SocketException e) {
 			e.printStackTrace();
 		}
