@@ -81,4 +81,8 @@ public class Game extends Thread {
 			System.exit( 1 );
 		}
 	}
+
+	public TicTacToe getGame() {
+		return game;
+	}
 }
