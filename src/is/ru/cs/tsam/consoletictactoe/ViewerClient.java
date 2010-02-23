@@ -8,6 +8,7 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
 import java.net.UnknownHostException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -34,6 +35,8 @@ public class ViewerClient {
 			address = InetAddress.getByName(add);
 		} catch (UnknownHostException e1) {
 			e1.printStackTrace();
+			System.out.println("Unknown Host");
+			System.exit(0);
 		}
 		port = 56000;
 		incoming = new byte[100];
@@ -42,6 +45,7 @@ public class ViewerClient {
 			viewerSocket = new DatagramSocket();
 		} catch (SocketException e) {
 			e.printStackTrace();
+			System.exit(0);
 		}
 	}
 
@@ -79,7 +83,7 @@ public class ViewerClient {
 	public static void main(String[] args) {
 		ViewerClient client;
 		Scanner in = new Scanner(System.in);
-		int nGame;
+		int nGame = -2;
 		if(args.length > 1) {
 			client = new ViewerClient(args[0]);
 			nGame = Integer.parseInt(args[1]);
@@ -93,8 +97,16 @@ public class ViewerClient {
 			client = new ViewerClient(in.nextLine());
 		}
 		do {
-			System.out.println("Please insert game number or -1 if you wan't to quit:");
-			nGame = in.nextInt();
+			do {
+				Scanner in2 = new Scanner(System.in);
+				System.out.println("Please insert game number or -1 if you wan't to quit:");
+				try{
+					nGame = in2.nextInt();
+				}
+				catch (InputMismatchException e) {
+					System.out.println("Please insert a number");
+				}
+			} while (nGame == -2);			
 			if (nGame != -1) System.out.println(client.getGame(nGame));
 		} while(nGame != -1);
 	}
