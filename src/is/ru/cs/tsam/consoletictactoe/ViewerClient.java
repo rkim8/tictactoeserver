@@ -93,8 +93,10 @@ public class ViewerClient {
 			client = new ViewerClient(args[0]);
 		}
 		else {
-			System.out.println("Please insert hostname:");
-			client = new ViewerClient(in.nextLine());
+			System.out.println("Please insert hostname ( 0 for Localhost):");
+			String s = in.nextLine();
+			if (s.contentEquals("0")) s = "127.0.0.1";
+			client = new ViewerClient(s);
 		}
 		do {
 			do {
