@@ -5,7 +5,8 @@ import java.net.*;
 import java.util.ArrayList;
 
 /**
- * A server for a console version of a TicTacToe game
+ * A server for a console version of a TicTacToe game.
+ * Accepts connections from {@link Client} and hands them to a {@link Game} thread.
  * 
  * @author Verkefnahópur í Tölvusamskiptum
  *
@@ -16,6 +17,9 @@ public class Server {
 	private ArrayList<Game> game;
 	private ViewerListener listener;
 
+	/**
+	 * Constructs and initializes the server. Runs the viewer listener.
+	 */
 	public Server() {
 		game = new ArrayList<Game>();
 		try {
@@ -56,6 +60,11 @@ public class Server {
 		}
 	}
 
+	/**
+	 * The main method of the server class. Starts the server
+	 * 
+	 * @param args	None
+	 */
 	public static void main(String[] args) {
 		Server s = new Server();
 		s.start();

@@ -15,6 +15,9 @@ public class TicTacToe {
 	private boolean playerOneTurn = true;
 	private int turns = 0;
 	
+	/**
+	 * Constructs a instance of TicTacToe and initializes the gaming board.
+	 */
 	public TicTacToe() {
 		board = new Square[SIZE][SIZE];
 		for (int i = 0; i < SIZE; i++)
@@ -70,6 +73,9 @@ public class TicTacToe {
 		// TODO Find out if it's a stalemate
 	}
 	
+	/**
+	 * Returns a char representation of the gaming board with numbers for the squares yet unmarked.
+	 */
  	public String toString() {
 		String output = "";
 		for (int i = 0; i < SIZE; i++) {

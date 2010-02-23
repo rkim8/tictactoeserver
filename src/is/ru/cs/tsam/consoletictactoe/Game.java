@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.net.Socket;
 
 /**
- * A thread object the runs a game of TicTacToe with 2 clients
+ * A thread object the runs a game of TicTacToe with two {@link Client}. To be run from a server
  * 
  * @author Verkefnahópur í Tölvusamskiptum
  */
@@ -18,6 +18,9 @@ public class Game extends Thread {
 	private TicTacToe game;
 
 
+	/**
+	 * Constructs and initializes a game thread for a TicTacToe server.
+	 */
 	public Game() {
 		player = new Socket[2];
 		input = new DataInputStream[2];
@@ -48,6 +51,9 @@ public class Game extends Thread {
 		}	
 	}
 
+	/**
+	 * Runs the thread. Handles gameplaying and communicating with the clients.
+	 */
 	public void run() {
 		boolean isPlaying = true;
 		int nPlayerTurn = 0;	
@@ -82,6 +88,11 @@ public class Game extends Thread {
 		}
 	}
 
+	/**
+	 * A get method for the {@link TicTacToe} game being run.
+	 * 
+	 * @return	The TicTacToe game being played in this thread
+	 */
 	public TicTacToe getGame() {
 		return game;
 	}

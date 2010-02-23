@@ -24,6 +24,11 @@ public class ViewerClient {
 	private InetAddress address;
 	private int port;
 
+	/**
+	 * Constructs an instance and initializes the connection.
+	 * 
+	 * @param add	Hostname or Ip address of the server.
+	 */
 	public ViewerClient(String add) {
 		try {
 			address = InetAddress.getByName(add);
@@ -65,6 +70,12 @@ public class ViewerClient {
 		return result;		
 	}
 
+	/**
+	 * The main method for the viewer client asks for the server if not passed as a argument.
+	 * Accepts gamenumbers and views the string returned from the server
+	 * 
+	 * @param args	First argument is hostname or Ip address, second argument can be the first game number.
+	 */
 	public static void main(String[] args) {
 		ViewerClient client;
 		Scanner in = new Scanner(System.in);
