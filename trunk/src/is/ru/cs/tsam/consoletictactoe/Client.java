@@ -33,7 +33,9 @@ public class Client {
 			System.exit(0);
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
+			System.out.println("Server not found");
+			System.exit(0);	
+		} 
 		System.out.println("Connection successful");
 
 		try {
