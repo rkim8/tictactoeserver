@@ -13,6 +13,7 @@ public class TicTacToe {
 	private final static int SIZE = 3;
 	private Square[][] board;
 	private boolean playerOneTurn = true;
+	private int turns = 0;
 	
 	public TicTacToe() {
 		board = new Square[SIZE][SIZE];
@@ -34,6 +35,7 @@ public class TicTacToe {
 		if((playerOneTurn && nPlayer == 0) || !playerOneTurn && nPlayer == 1)
 			if(board[nSquare/3][nSquare%3].mark(nPlayer)) {
 				playerOneTurn = !playerOneTurn;
+				turns++;
 				return true;
 			}
 		return false;
@@ -42,7 +44,7 @@ public class TicTacToe {
 	/**
 	 * Goes through the board and finds out if either player has won the game
 	 * 
-	 * @return	The number of the winner (0 or 1) or -1 if neither has won.
+	 * @return	The number of the winner (0 or 1) -2 for stalemate or -1 if game isn't over.
 	 */
 	public int getWinner() {
 		for (int i = 0; i < SIZE; i++)
@@ -63,6 +65,7 @@ public class TicTacToe {
 				&& board[0][2].getOwnedBy() == board[1][1].getOwnedBy()
 				&& board[1][1].getOwnedBy() == board[2][0].getOwnedBy())
 			return board[0][2].getOwnedBy();
+		if (turns >= 9) return -2;
 		return -1;		
 		// TODO Find out if it's a stalemate
 	}

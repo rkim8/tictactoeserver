@@ -36,7 +36,11 @@ public class ViewerListener extends Thread {
 
 	public void sendResponse(int nGame, SocketAddress sAdd) {
 		try {
-			String gameStatus = gameList.get(nGame).getGame().toString();
+			String gameStatus;
+			if (nGame < gameList.size()) {
+				gameStatus = gameList.get(nGame).getGame().toString();
+			}
+			else gameStatus = "No such game";
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
 			DataOutputStream dos = new DataOutputStream(baos);
 			dos.writeUTF(gameStatus);

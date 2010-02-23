@@ -68,7 +68,8 @@ public class Client {
 			}
 			int winner = input.readInt();
 			if (winner == nPlayer) System.out.println("Congratulation you won");
-			else System.out.println("You suck");
+			else if (winner == -2) System.out.println("Stalemate");
+			else System.out.println("You lost");
 		}
 		catch (IOException e) {
 			e.printStackTrace();
@@ -78,10 +79,16 @@ public class Client {
 
 	public static void main(String[] args) {
 		Client c = new Client();
-		if (args.length == 0) {
-			System.out.print("No host specified, connectiong to localhost");
-			c.connect("127.0.0.1");
+		Scanner in = new Scanner(System.in);
+		String s;
+		if (args.length > 0) {
+			c.connect(args[0]);
 		}	
-		else c.connect(args[0]);		
+		else {
+			System.out.println("Please insert hostname ( 0 for Localhost):");
+			s = in.nextLine();
+			if (s.contentEquals("0")) c.connect("127.0.0.1");
+			else c.connect(s);
+		}
 	}
 }

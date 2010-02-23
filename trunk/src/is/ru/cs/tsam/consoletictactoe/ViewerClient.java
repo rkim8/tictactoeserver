@@ -8,16 +8,17 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
 import java.net.UnknownHostException;
+import java.util.Scanner;
 
 public class ViewerClient {
-	
+
 	private DatagramSocket viewerSocket;
 	private DatagramPacket packet;
 	private byte[] incoming;
 	private byte[] outgoing;
 	private InetAddress address;
 	private int port;
-	
+
 	public ViewerClient(String add) {
 		try {
 			address = InetAddress.getByName(add);
@@ -33,18 +34,25 @@ public class ViewerClient {
 			e.printStackTrace();
 		}
 	}
-	
+
+	/**
+	 * Sends a request for a specific numbered game from a TicTacToe {@link Server} and
+	 * receives it as a UTF formatted String.
+	 * 
+	 * @param nGame	Number of the game it wants
+	 * @return		The game status as a String
+	 */
 	public String getGame(int nGame) {
 		String result = "";
 		try {
-		outgoing[0] = (byte)nGame;
-		packet = new DatagramPacket(outgoing, outgoing.length, address, port);
-		viewerSocket.send(packet);
-		packet = new DatagramPacket(incoming, incoming.length);
-		viewerSocket.receive(packet);
-		ByteArrayInputStream bais = new ByteArrayInputStream(incoming);
-		DataInputStream dis = new DataInputStream(bais);
-		result = dis.readUTF();
+			outgoing[0] = (byte)nGame;
+			packet = new DatagramPacket(outgoing, outgoing.length, address, port);
+			viewerSocket.send(packet);
+			packet = new DatagramPacket(incoming, incoming.length);
+			viewerSocket.receive(packet);
+			ByteArrayInputStream bais = new ByteArrayInputStream(incoming);
+			DataInputStream dis = new DataInputStream(bais);
+			result = dis.readUTF();
 		}
 		catch (IOException e) {
 			e.printStackTrace();
@@ -53,9 +61,25 @@ public class ViewerClient {
 	}
 
 	public static void main(String[] args) {
-		ViewerClient client = new ViewerClient(args[0]);
-		int n = Integer.parseInt(args[1]);
-		System.out.println(client.getGame(n));
+		ViewerClient client;
+		Scanner in = new Scanner(System.in);
+		int nGame;
+		if(args.length > 1) {
+			client = new ViewerClient(args[0]);
+			nGame = Integer.parseInt(args[1]);
+			System.out.println(client.getGame(nGame));
+		}
+		else if(args.length > 0) {
+			client = new ViewerClient(args[0]);
+		}
+		else {
+			System.out.println("Please insert hostname:");
+			client = new ViewerClient(in.nextLine());
+		}
+		do {
+			System.out.println("Please insert game number or -1 if you wan't to quit:");
+			nGame = in.nextInt();
+			if (nGame != -1) System.out.println(client.getGame(nGame));
+		} while(nGame != -1);
 	}
-
 }
