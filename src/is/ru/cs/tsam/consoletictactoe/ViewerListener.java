@@ -4,6 +4,12 @@ import java.io.*;
 import java.net.*;
 import java.util.ArrayList;
 
+/**
+ * A thread that listens to connections from a remote viewer and
+ * handles requests from them
+ * 
+ * @author Verkefnahópur í Tölvusamskiptum
+ */
 public class ViewerListener extends Thread {
 
 	private ArrayList<Game> gameList;
@@ -34,9 +40,16 @@ public class ViewerListener extends Thread {
 		}	
 	}
 
+	/**
+	 * Responds to a request to view a game
+	 * 
+	 * @param nGame	Number of the game to be viewed
+	 * @param sAdd	Address of the remote viewer
+	 */
 	public void sendResponse(int nGame, SocketAddress sAdd) {
 		try {
 			String gameStatus;
+			System.out.println("Viewer requesting game " + nGame);
 			if (nGame < gameList.size()) {
 				gameStatus = gameList.get(nGame).getGame().toString();
 			}
@@ -47,6 +60,7 @@ public class ViewerListener extends Thread {
 			outgoing = baos.toByteArray();
 			packet = new DatagramPacket(outgoing, outgoing.length, sAdd);
 			viewerSocket.send(packet);
+			System.out.println("Request answered with:\n" + gameStatus);
 		}
 		catch (IOException e){
 			e.printStackTrace();
