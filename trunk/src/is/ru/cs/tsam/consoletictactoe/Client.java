@@ -96,8 +96,8 @@ public class Client {
 		else {
 			System.out.println("Please insert hostname ( 0 for Localhost):");
 			s = in.nextLine();
-			if (s.contentEquals("0")) c.connect("127.0.0.1");
-			else c.connect(s);
+			if (s.contentEquals("0")) s = "127.0.0.1";
+			c.connect(s);
 		}
 	}
 }
