@@ -18,6 +18,11 @@ public class ViewerListener extends Thread {
 	private byte[] incoming;
 	private byte[] outgoing;
 
+	/**
+	 * Constructs the listener and initializes the socket.
+	 * 
+	 * @param list The list of games being played on the server.
+	 */
 	public ViewerListener(ArrayList<Game> list) {
 		gameList = list;
 		incoming = new byte[1];
@@ -28,6 +33,9 @@ public class ViewerListener extends Thread {
 		}
 	}
 
+	/**
+	 * Runs the thread and awaits and responds to request being made
+	 */
 	public void run() {
 		while(true) {
 			packet = new DatagramPacket(incoming, incoming.length);

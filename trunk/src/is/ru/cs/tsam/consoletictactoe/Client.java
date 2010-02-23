@@ -6,7 +6,8 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
- * A client for a console version of a TicTacToe game
+ * A client for a console version of a TicTacToe game.
+ * Connects to a TicTacToe {@link Server}.
  * 
  * @author Verkefnahópur í Tölvusamskiptum
  */
@@ -77,6 +78,12 @@ public class Client {
 
 	}
 
+	/**
+	 * The main method of the client, ask for a hostname if 
+	 * it's not passed as a argument and connects to the server.
+	 * 
+	 * @param args	First argument can be the hostname or ip address for a TicTacToe server.
+	 */
 	public static void main(String[] args) {
 		Client c = new Client();
 		Scanner in = new Scanner(System.in);
