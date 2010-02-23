@@ -10,6 +10,11 @@ import java.net.SocketException;
 import java.net.UnknownHostException;
 import java.util.Scanner;
 
+/**
+ * A client to remotely view TicTacToe games
+ * 
+ * @author Verkefnahópur í Tölvusamskiptum
+ */
 public class ViewerClient {
 
 	private DatagramSocket viewerSocket;
